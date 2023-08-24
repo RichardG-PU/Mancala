@@ -43,19 +43,20 @@ class Mancala:
         reached = False
         bumps = self.grille[id]
         self.grille[id] = 0
-        while bumps <= 0:
+        while bumps > 0:
             for key, value in self.grille.items():
                 if key == id:
                     reached=True
                 if key != id and reached and bumps != 0 and key != "0":
                     self.grille[key] = value + 1
                     bumps-=1
-
+            print(self.grille)
+        
         return True
 
 def main():
     mancala = Mancala()
-    mancala.joueurDeplacement("G")
+    mancala.joueurDeplacement("A")
 
 if __name__ == "__main__":
     main()
