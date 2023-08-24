@@ -7,7 +7,8 @@ def event_puit(id):
     puits[id].bouton.configure(text="allo")
     print(id, puits[id].label)
     status_label['text'] = puits[id].label
-    Mancala.joueurDeplacement(id)
+    if Mancala.joueurDeplacement(id) != False:
+        Mancala.grille
 
 def event_reset():
     # ICI le reset

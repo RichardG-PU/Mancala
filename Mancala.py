@@ -38,7 +38,6 @@ class Mancala:
     def joueurDeplacement(self, id):
         blacklist = "GHIJKL01"
         if id in blacklist:
-            print("se")
             return False
         
         reached = False
@@ -51,7 +50,7 @@ class Mancala:
                 if key != id and reached and bumps != 0 and key != "0":
                     self.grille[key] = value + 1
                     bumps-=1
-            print(self.grille)
+
         return True
 
 def main():
