@@ -7,14 +7,14 @@ class Mancala:
                     "D" : 4,
                     "E" : 4,
                     "F" : 4,
-                    "1" : 0,
-                    "G" : 4,
-                    "H" : 4,
-                    "I" : 4,
-                    "J" : 4,
-                    "K" : 4,
+                    "2" : 0,
                     "L" : 4,
-                    "2" : 0
+                    "K" : 4,
+                    "J" : 4,
+                    "I" : 4,
+                    "H" : 4,
+                    "G" : 4,
+                    "1" : 0
             }
     
     def nouvelleGrille(self):
@@ -25,14 +25,14 @@ class Mancala:
                     "D" : 4,
                     "E" : 4,
                     "F" : 4,
-                    "1" : 0,
-                    "G" : 4,
-                    "H" : 4,
-                    "I" : 4,
-                    "J" : 4,
-                    "K" : 4,
+                    "2" : 0,
                     "L" : 4,
-                    "2" : 0
+                    "K" : 4,
+                    "J" : 4,
+                    "I" : 4,
+                    "H" : 4,
+                    "G" : 4,
+                    "1" : 0
         }
     
     def joueurDeplacement(self, id):
@@ -47,7 +47,7 @@ class Mancala:
             for key, value in self.grille.items():
                 if key == id:
                     reached=True
-                if key != id and reached and bumps != 0 and key != "2":
+                if key != id and reached and bumps != 0 and key != "1":
                     self.grille[key] = value + 1
                     bumps-=1
             print(self.grille)

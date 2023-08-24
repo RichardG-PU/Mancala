@@ -2,18 +2,15 @@ import tkinter as tk
 from Puit import Puit
 from Mancala import Mancala
 
+mancala = Mancala()
+
 def event_puit(id):
-    # ICI l'action!!!!
-    mancala = Mancala()
-    puits[id].bouton.configure(text="allo")
-    print(id, puits[id].label)
     status_label['text'] = puits[id].label
     if mancala.joueurDeplacement(puits[id].label) != False:
         for key, value in mancala.grille.items():
-            if key == puits[id].label:
-                puits[id].nbGraines = value
-                print(value)
-                puits[id].bouton.configure(text=str(value))
+            for val in puits:
+                if key == val.label:
+                    val.bouton.configure(text=str(value))
 
 def event_reset():
     # ICI le reset
