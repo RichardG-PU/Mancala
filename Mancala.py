@@ -18,7 +18,7 @@ class Mancala:
             }
     
     def nouvelleGrille(self):
-        grille = {
+        self.grille = {
             "A" : 4,
                     "B" : 4,
                     "C" : 4,
