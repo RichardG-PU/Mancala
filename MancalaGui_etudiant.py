@@ -4,11 +4,16 @@ from Mancala import Mancala
 
 def event_puit(id):
     # ICI l'action!!!!
+    mancala = Mancala()
     puits[id].bouton.configure(text="allo")
     print(id, puits[id].label)
     status_label['text'] = puits[id].label
-    if Mancala.joueurDeplacement(id) != False:
-        Mancala.grille
+    if mancala.joueurDeplacement(puits[id].label) != False:
+        for key, value in mancala.grille.items():
+            if key == puits[id].label:
+                puits[id].nbGraines = value
+                print(value)
+                puits[id].bouton.configure(text=str(value))
 
 def event_reset():
     # ICI le reset
@@ -16,7 +21,7 @@ def event_reset():
 
 if __name__ == '__main__':
     Mancala()
-    Mancala.nouvelleGrille()
+
     puits = []
 
     puits.append(Puit("1", 0, 0, 100, 300, 0))
