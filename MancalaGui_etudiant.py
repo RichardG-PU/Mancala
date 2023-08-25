@@ -4,20 +4,29 @@ from Mancala import Mancala
 
 mancala = Mancala()
 
+def orderManager():
+    if mancala.joueurTour == True:
+        status_label['text'] = "Tour du joueur"
+    else:
+        status_label['text'] = "Tour du AI"
+
+def updateGrill():
+    for key, value in mancala.grille.items():
+        for val in puits:
+            if key == val.label:
+                val.bouton.configure(text=str(value))
+
 def event_puit(id):
-    status_label['text'] = puits[id].label
     if mancala.joueurDeplacement(puits[id].label) != False:
-        for key, value in mancala.grille.items():
-            for val in puits:
-                if key == val.label:
-                    val.bouton.configure(text=str(value))
+        updateGrill()
+    orderManager()
 
 def event_reset():
-    # ICI le reset
-    print("Nouvelle partie!!!")
+    mancala.nouvelleGrille()
+    updateGrill()
+    orderManager()
 
 if __name__ == '__main__':
-    Mancala()
 
     puits = []
 
@@ -50,8 +59,10 @@ if __name__ == '__main__':
             puit.bouton = tk.Button(play_area, text=str(puit.nbGraines), font=('Arial', 15), command=lambda id=i: event_puit(id))
         puit.bouton.place(x = puit.x, y = puit.y, width=puit.width, height=puit.height)
 
-    status_label = tk.Label(play_area, text="Play", font=('Arial', 16), bg='white')
+    status_label = tk.Label(play_area, text="", font=('Arial', 16), bg='white')
     status_label.place(x = 100, y = 100, width=600, height=100)
+
+    orderManager()
 
     play_area.pack(pady=10, padx=10)
 
