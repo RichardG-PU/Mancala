@@ -38,7 +38,7 @@ if __name__ == '__main__':
     puits.append(Puit("K", 500, 0, 100, 100, 4))
     puits.append(Puit("L", 600, 0, 100, 100, 4))
     puits.append(Puit("2", 700, 0, 100, 300, 0))
-    puits.append(Puit("A", 100, 200, 100, 100, 4))
+    puits.append(Puit("A", 100, 200, 100, 100, 13))
     puits.append(Puit("B", 200, 200, 100, 100, 4))
     puits.append(Puit("C", 300, 200, 100, 100, 4))
     puits.append(Puit("D", 400, 200, 100, 100, 4))

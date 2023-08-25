@@ -3,7 +3,7 @@ import random
 class Mancala:
     def __init__(self):
         self.grille = {
-            "A" : 4,
+            "A" : 13,
             "B" : 4,
             "C" : 4,
             "D" : 4,
@@ -22,7 +22,7 @@ class Mancala:
     
     def nouvelleGrille(self):
         self.grille = {
-            "A" : 4,
+            "A" : 13,
             "B" : 4,
             "C" : 4,
             "D" : 4,
@@ -49,6 +49,7 @@ class Mancala:
         singleBump = False
         counter = 0
         reverseCounter = 0
+        ignored = False
 
         if bumps == 1:
             singleBump = True # IL FAUT CHECK SI LE PROCHAIN VALUE == 0
@@ -58,9 +59,8 @@ class Mancala:
                 counter+=1
                 if key == id:
                     reached=True
-                if key != id and reached and bumps != 0 and key != "1":
-
-
+                if (key != id or ignored) and reached and bumps != 0 and key != "1":
+                    ignored = True
                     if singleBump == True:
                         for i, v in reversed(self.grille.items()):
                             reverseCounter+=1
