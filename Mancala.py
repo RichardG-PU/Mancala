@@ -64,7 +64,7 @@ class Mancala:
                     if singleBump == True:
                         for i, v in reversed(self.grille.items()):
                             reverseCounter+=1
-                            if(reverseCounter - 1 == counter):
+                            if reverseCounter - 1 == counter:
                                 self.grille["2"] = v + self.grille["2"] + value
                                 self.grille[i] = 0
                     else:
