@@ -48,9 +48,10 @@ class Mancala:
         bumps = self.grille[id]
         singleBump = False
         counter = 0
+        reverseCounter = 0
 
         if bumps == 1:
-            singleBump = True
+            singleBump = True # IL FAUT CHECK SI LE PROCHAIN VALUE == 0
         self.grille[id] = 0
         while bumps > 0:
             for key, value in self.grille.items():
@@ -58,17 +59,23 @@ class Mancala:
                 if key == id:
                     reached=True
                 if key != id and reached and bumps != 0 and key != "1":
+
+
                     if singleBump == True:
-                        for key, value in reversed(self.grille.items()):
-                            print(key, value)
-                        # BROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo
-                        # faut faire un algorithme but i gotchu tkt
-                    self.grille[key] = value + 1
+                        for i, v in reversed(self.grille.items()):
+                            reverseCounter+=1
+                            if(reverseCounter - 1 == counter):
+                                self.grille["2"] = v + self.grille["2"] + value
+                                self.grille[i] = 0
+                    else:
+                        self.grille[key] = value + 1
+                    
                     bumps-=1
                     if bumps == 0 and key == "2":
                         self.joueurTour = True
                     else:
                         self.joueurTour = True # False
+
             print(self.grille)
         
         return True
