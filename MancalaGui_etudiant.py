@@ -4,11 +4,13 @@ from Mancala import Mancala
 
 mancala = Mancala()
 
+
 def orderManager():
     if mancala.joueurTour == True:
-        status_label['text'] = "Tour du joueur"
+        status_label["text"] = "Tour du joueur"
     else:
-        status_label['text'] = "Tour du AI"
+        status_label["text"] = "Tour du AI"
+
 
 def updateGrill():
     for key, value in mancala.grille.items():
@@ -16,18 +18,20 @@ def updateGrill():
             if key == val.label:
                 val.bouton.configure(text=str(value))
 
+
 def event_puit(id):
     if mancala.joueurDeplacement(puits[id].label) != False:
         updateGrill()
     orderManager()
+
 
 def event_reset():
     mancala.nouvelleGrille()
     updateGrill()
     orderManager()
 
-if __name__ == '__main__':
 
+if __name__ == "__main__":
     puits = []
 
     puits.append(Puit("1", 0, 0, 100, 300, 0))
@@ -48,25 +52,34 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.resizable(False, False)
     root.title("Projet 1 - Richard + Kenny")
-    tk.Label(root, text="Mancala", font=('Arial', 25), fg='red').pack()
+    tk.Label(root, text="Mancala", font=("Arial", 25), fg="red").pack()
 
-    play_area = tk.Frame(root, width=800, height=300, bg='white')
+    play_area = tk.Frame(root, width=800, height=300, bg="white")
 
     for i, puit in enumerate(puits):
         if puit.nbGraines == 0 or puit.label == "1" or puit.label == "2":
-            puit.bouton = tk.Button(play_area, text=str(puit.nbGraines), font=('Arial', 15))
+            puit.bouton = tk.Button(
+                play_area, text=str(puit.nbGraines), font=("Arial", 15)
+            )
         else:
-            puit.bouton = tk.Button(play_area, text=str(puit.nbGraines), font=('Arial', 15), command=lambda id=i: event_puit(id))
-        puit.bouton.place(x = puit.x, y = puit.y, width=puit.width, height=puit.height)
+            puit.bouton = tk.Button(
+                play_area,
+                text=str(puit.nbGraines),
+                font=("Arial", 15),
+                command=lambda id=i: event_puit(id),
+            )
+        puit.bouton.place(x=puit.x, y=puit.y, width=puit.width, height=puit.height)
 
-    status_label = tk.Label(play_area, text="", font=('Arial', 16), bg='white')
-    status_label.place(x = 100, y = 100, width=600, height=100)
+    status_label = tk.Label(play_area, text="", font=("Arial", 16), bg="white")
+    status_label.place(x=100, y=100, width=600, height=100)
 
     orderManager()
 
     play_area.pack(pady=10, padx=10)
 
-    play_again_button = tk.Button(root, text='Nouvelle partie', font=('Arial', 12), command=event_reset)
+    play_again_button = tk.Button(
+        root, text="Nouvelle partie", font=("Arial", 12), command=event_reset
+    )
     play_again_button.pack(pady=10)
 
     root.mainloop()
