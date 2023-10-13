@@ -6,7 +6,7 @@ mancala = Mancala()
 gameOver = False
 
 def event_AI():
-    mancala.ordiDeplacement("random")
+    mancala.ordiDeplacement("max")
     updateGrill()
 
 def gameOverCheck():
