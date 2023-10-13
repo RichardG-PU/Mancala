@@ -3,32 +3,60 @@ from Puit import Puit
 from Mancala import Mancala
 
 mancala = Mancala()
+gameOver = False
 
+def event_AI():
+    mancala.ordiDeplacement("random")
+    updateGrill()
+
+def gameOverCheck():
+    global gameOver
+    print(gameOver)
+    if mancala.terminateGame() and gameOver != True:
+        gameOver = True
+        updateGrill()
+        return True
+    return False
 
 def orderManager():
-    if mancala.joueurTour == True:
+    if gameOverCheck() or gameOver:
+        evaluation = mancala.evaluate(mancala.grille)
+        #print(evaluation)
+        if evaluation > 0:
+            status_label["text"] = "Le joueur a gagne"
+            print("Winner player")
+        elif evaluation == 0:
+            status_label["text"] = "Egal"
+            print("Winner egal")
+        elif evaluation < 0:
+            status_label["text"] = "AI a gagne"
+            print("Winner AI")
+    elif mancala.joueurTour:
         status_label["text"] = "Tour du joueur"
     else:
         status_label["text"] = "Tour du AI"
-
+        event_AI()
 
 def updateGrill():
     for key, value in mancala.grille.items():
         for val in puits:
             if key == val.label:
                 val.bouton.configure(text=str(value))
+    orderManager()
 
 
 def event_puit(id):
     if mancala.joueurDeplacement(puits[id].label) != False:
         updateGrill()
-    orderManager()
-
+    else:
+        orderManager()
 
 def event_reset():
-    mancala.nouvelleGrille()
+    global gameOver
+    global mancala
+    mancala = Mancala()
     updateGrill()
-    orderManager()
+    gameOver = False
 
 
 if __name__ == "__main__":
@@ -42,7 +70,7 @@ if __name__ == "__main__":
     puits.append(Puit("K", 500, 0, 100, 100, 4))
     puits.append(Puit("L", 600, 0, 100, 100, 4))
     puits.append(Puit("2", 700, 0, 100, 300, 0))
-    puits.append(Puit("A", 100, 200, 100, 100, 13))
+    puits.append(Puit("A", 100, 200, 100, 100, 4))
     puits.append(Puit("B", 200, 200, 100, 100, 4))
     puits.append(Puit("C", 300, 200, 100, 100, 4))
     puits.append(Puit("D", 400, 200, 100, 100, 4))
